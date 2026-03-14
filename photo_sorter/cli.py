@@ -167,8 +167,41 @@ def format_metadata(metadata: Dict[str, Any]) -> str:
     return '\n'.join(html_parts)
 
 
+def create_thumbnail_for_report(image_path: Path, report_dir: Path, max_size: int = 300) -> str:
+    """Create a thumbnail for the report. For HEIC/HEIF, convert to JPEG."""
+    try:
+        from PIL import Image
+        
+        # Check if it's a HEIC/HEIF file that needs conversion
+        ext = image_path.suffix.lower()
+        if ext in ['.heic', '.heif']:
+            # Create a JPEG thumbnail
+            thumb_filename = f"thumb_{image_path.stem}.jpg"
+            thumb_path = report_dir / thumb_filename
+            
+            if not thumb_path.exists():
+                with Image.open(image_path) as img:
+                    img.thumbnail((max_size, max_size))
+                    # Convert to RGB for JPEG
+                    if img.mode in ('RGBA', 'LA', 'P'):
+                        img = img.convert('RGB')
+                    img.save(thumb_path, 'JPEG', quality=85)
+            
+            return thumb_path.as_uri()
+        else:
+            # For other formats, just return the file URI
+            return image_path.as_uri()
+    except Exception as e:
+        # If conversion fails, return the original URI
+        return image_path.as_uri()
+
+
 def generate_html_report(results: list, output_path: Path):
     """Generate an HTML report with clickable image paths and metadata."""
+    
+    # Create a directory for thumbnails
+    thumbs_dir = output_path.parent / f"{output_path.stem}_thumbnails"
+    thumbs_dir.mkdir(exist_ok=True)
     
     real_photos = [r for r in results if r["is_real"]]
     non_real = [r for r in results if not r["is_real"]]
@@ -224,12 +257,13 @@ def generate_html_report(results: list, output_path: Path):
         d = r["details"]
         filepath = r["path"]
         file_url = filepath.as_uri()
+        thumb_url = create_thumbnail_for_report(filepath, thumbs_dir)
         metadata = r.get("metadata", {})
         
         html += f'    <div class="image-item real">\n'
         html += f'        <div class="content-wrapper">\n'
         html += f'            <div class="image-section">\n'
-        html += f'                <img class="thumbnail" src="{file_url}" onerror="this.style.display=\'none\'" />\n'
+        html += f'                <img class="thumbnail" src="{thumb_url}" onerror="this.style.display=\'none\'" />\n'
         html += f'            </div>\n'
         html += f'            <div class="info-section">\n'
         html += f'                <div class="filepath"><a href="{file_url}">{filepath}</a></div>\n'

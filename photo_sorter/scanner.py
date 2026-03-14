@@ -24,7 +24,21 @@ def is_screenshot_by_filename(filepath: Path) -> bool:
         'screen recording',
         'screenrecording',
     ]
-    return any(indicator in name_lower for indicator in screenshot_indicators)
+    if any(indicator in name_lower for indicator in screenshot_indicators):
+        return True
+    
+    # Check for iOS screenshot patterns: IMG_XXXX.PNG where XXXX is a number
+    # These are typically iOS screenshots
+    import re
+    stem = filepath.stem
+    if re.match(r'^IMG_\d{3,5}$', stem, re.IGNORECASE) and filepath.suffix.lower() == '.png':
+        return True
+    
+    # Check for "Untitled" PNG files - often screenshots saved from browsers/apps
+    if stem.lower().startswith('untitled') and filepath.suffix.lower() == '.png':
+        return True
+    
+    return False
 
 
 def scan_directory(directory: Path) -> List[Path]:

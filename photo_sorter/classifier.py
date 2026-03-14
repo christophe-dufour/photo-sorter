@@ -18,8 +18,10 @@ CANDIDATE_LABELS = [
     "a family photo with people",
     "a landscape or nature photo",
     "a photo of food or objects",
-    # Not real photos
-    "a screenshot of a phone or computer",
+    # Not real photos - screenshots and digital content
+    "a screenshot of a phone or computer screen",
+    "a screenshot with status bar showing time and battery",
+    "a screenshot from a mobile app with user interface",
     "a photo of a document or paper",
     "a photo of a receipt or bill",
 ]
@@ -31,7 +33,9 @@ REAL_PHOTO_LABELS = [
 ]
 
 NON_REAL_LABELS = [
-    "a screenshot of a phone or computer",
+    "a screenshot of a phone or computer screen",
+    "a screenshot with status bar showing time and battery",
+    "a screenshot from a mobile app with user interface",
     "a photo of a document or paper",
     "a photo of a receipt or bill",
 ]

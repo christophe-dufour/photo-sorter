@@ -7,6 +7,7 @@
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; margin: 40px; background: #f5f5f5; }
         h1 { color: #333; }
         h2 { color: #555; margin-top: 30px; }
+        h4 { margin: 10px 0 5px 0; color: #666; }
         .summary { background: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
         .image-item { background: white; padding: 15px; margin: 10px 0; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
         .real { border-left: 4px solid #4CAF50; }
@@ -20,6 +21,16 @@
         .real-label { color: #4CAF50; }
         .non-real-label { color: #f44336; }
         img.thumbnail { max-width: 200px; max-height: 200px; border-radius: 4px; margin-top: 10px; }
+        .metadata { margin-top: 10px; padding: 10px; background: #f9f9f9; border-radius: 4px; }
+        .metadata-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+        .metadata-table td { padding: 3px 8px; }
+        .meta-label { color: #666; font-weight: bold; width: 120px; }
+        .exif-section { background: #e3f2fd; }
+        .no-exif { color: #999; font-style: italic; }
+        .metadata-error { color: #f44336; }
+        .content-wrapper { display: flex; gap: 20px; align-items: flex-start; }
+        .image-section { flex: 0 0 auto; }
+        .info-section { flex: 1; }
     </style>
 </head>
 <body>
@@ -27,179 +38,550 @@
     <div class="summary">
         <h2>Summary</h2>
         <p><strong>Total images tested:</strong> 30</p>
-        <p><strong class="real-label">Real photos detected:</strong> 5</p>
-        <p><strong class="non-real-label">Non-real photos detected:</strong> 25</p>
+        <p><strong class="real-label">Real photos detected:</strong> 8</p>
+        <p><strong class="non-real-label">Non-real photos detected:</strong> 22</p>
     </div>
     
     <h2>Real Photos</h2>
     <div class="image-item real">
-        <div class="filepath"><a href="file:///Users/christophe/Downloads/PHOTO-2025-08-06-13-26-54.jpg">/Users/christophe/Downloads/PHOTO-2025-08-06-13-26-54.jpg</a></div>
-        <p class="score">Top label: <span class="label">a landscape or nature photo</span> (32.4%)</p>
-        <p class="score">Real score: 69.3% | Non-real: 30.7%</p>
-        <img class="thumbnail" src="file:///Users/christophe/Downloads/PHOTO-2025-08-06-13-26-54.jpg" onerror="this.style.display='none'" />
+        <div class="content-wrapper">
+            <div class="image-section">
+                <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_0418.jpeg" onerror="this.style.display='none'" />
+            </div>
+            <div class="info-section">
+                <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_0418.jpeg">/Users/christophe/Downloads/IMG_0418.jpeg</a></div>
+                <p class="score">Top label: <span class="label">a landscape or nature photo</span> (84.1%)</p>
+                <p class="score">Real score: 95.3% | Non-real: 4.7%</p>
+<p class="metadata-error">No metadata available</p>            </div>
+        </div>
     </div>
     <div class="image-item real">
-        <div class="filepath"><a href="file:///Users/christophe/Downloads/8.jpg">/Users/christophe/Downloads/8.jpg</a></div>
-        <p class="score">Top label: <span class="label">a landscape or nature photo</span> (87.6%)</p>
-        <p class="score">Real score: 92.5% | Non-real: 7.5%</p>
-        <img class="thumbnail" src="file:///Users/christophe/Downloads/8.jpg" onerror="this.style.display='none'" />
+        <div class="content-wrapper">
+            <div class="image-section">
+                <img class="thumbnail" src="file:///Users/christophe/Downloads/Untitled%20%2820%29.png" onerror="this.style.display='none'" />
+            </div>
+            <div class="info-section">
+                <div class="filepath"><a href="file:///Users/christophe/Downloads/Untitled%20%2820%29.png">/Users/christophe/Downloads/Untitled (20).png</a></div>
+                <p class="score">Top label: <span class="label">a landscape or nature photo</span> (53.7%)</p>
+                <p class="score">Real score: 69.7% | Non-real: 30.3%</p>
+<div class="metadata">
+<h4>📊 Metadata</h4>
+<table class="metadata-table">
+<tr><td class="meta-label">Format:</td>
+<td>PNG</td></tr>
+<tr><td class="meta-label">Dimensions:</td>
+<td>896x896</td></tr>
+<tr><td class="meta-label">File Size:</td>
+<td>24.6 KB</td></tr>
+<tr><td colspan="2" class="no-exif">❌ No EXIF data</td></tr>
+</table>
+</div>            </div>
+        </div>
     </div>
     <div class="image-item real">
-        <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_6410%202.jpg">/Users/christophe/Downloads/IMG_6410 2.jpg</a></div>
-        <p class="score">Top label: <span class="label">a landscape or nature photo</span> (71.7%)</p>
-        <p class="score">Real score: 80.2% | Non-real: 19.8%</p>
-        <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_6410%202.jpg" onerror="this.style.display='none'" />
+        <div class="content-wrapper">
+            <div class="image-section">
+                <img class="thumbnail" src="file:///Users/christophe/Downloads/PHOTO-2025-08-06-13-26-53.jpg" onerror="this.style.display='none'" />
+            </div>
+            <div class="info-section">
+                <div class="filepath"><a href="file:///Users/christophe/Downloads/PHOTO-2025-08-06-13-26-53.jpg">/Users/christophe/Downloads/PHOTO-2025-08-06-13-26-53.jpg</a></div>
+                <p class="score">Top label: <span class="label">a landscape or nature photo</span> (49.2%)</p>
+                <p class="score">Real score: 72.5% | Non-real: 27.5%</p>
+<div class="metadata">
+<h4>📊 Metadata</h4>
+<table class="metadata-table">
+<tr><td class="meta-label">Format:</td>
+<td>JPEG</td></tr>
+<tr><td class="meta-label">Dimensions:</td>
+<td>1600x1200</td></tr>
+<tr><td class="meta-label">File Size:</td>
+<td>302.8 KB</td></tr>
+<tr><td colspan="2" class="no-exif">❌ No EXIF data</td></tr>
+</table>
+</div>            </div>
+        </div>
     </div>
     <div class="image-item real">
-        <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_6402%202.JPG">/Users/christophe/Downloads/IMG_6402 2.JPG</a></div>
-        <p class="score">Top label: <span class="label">a landscape or nature photo</span> (54.1%)</p>
-        <p class="score">Real score: 92.3% | Non-real: 7.7%</p>
-        <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_6402%202.JPG" onerror="this.style.display='none'" />
+        <div class="content-wrapper">
+            <div class="image-section">
+                <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_0178.HEIC" onerror="this.style.display='none'" />
+            </div>
+            <div class="info-section">
+                <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_0178.HEIC">/Users/christophe/Downloads/IMG_0178.HEIC</a></div>
+                <p class="score">Top label: <span class="label">a landscape or nature photo</span> (94.2%)</p>
+                <p class="score">Real score: 98.4% | Non-real: 1.6%</p>
+<p class="metadata-error">No metadata available</p>            </div>
+        </div>
     </div>
     <div class="image-item real">
-        <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_6398%202.jpg">/Users/christophe/Downloads/IMG_6398 2.jpg</a></div>
-        <p class="score">Top label: <span class="label">a family photo with people</span> (74.3%)</p>
-        <p class="score">Real score: 97.8% | Non-real: 2.2%</p>
-        <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_6398%202.jpg" onerror="this.style.display='none'" />
+        <div class="content-wrapper">
+            <div class="image-section">
+                <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_6422%202.jpg" onerror="this.style.display='none'" />
+            </div>
+            <div class="info-section">
+                <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_6422%202.jpg">/Users/christophe/Downloads/IMG_6422 2.jpg</a></div>
+                <p class="score">Top label: <span class="label">a landscape or nature photo</span> (64.6%)</p>
+                <p class="score">Real score: 86.8% | Non-real: 13.2%</p>
+<div class="metadata">
+<h4>📊 Metadata</h4>
+<table class="metadata-table">
+<tr><td class="meta-label">Format:</td>
+<td>MPO</td></tr>
+<tr><td class="meta-label">Dimensions:</td>
+<td>3024x4032</td></tr>
+<tr><td class="meta-label">File Size:</td>
+<td>3947.5 KB</td></tr>
+<tr class="exif-section"><td colspan="2"><strong>EXIF Data:</strong></td></tr>
+<tr><td class="meta-label">Date Taken:</td>
+<td>2025-02-02T13:05:53</td></tr>
+<tr><td class="meta-label">Camera:</td>
+<td>Apple iPhone XS</td></tr>
+</table>
+</div>            </div>
+        </div>
+    </div>
+    <div class="image-item real">
+        <div class="content-wrapper">
+            <div class="image-section">
+                <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_0176.HEIC" onerror="this.style.display='none'" />
+            </div>
+            <div class="info-section">
+                <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_0176.HEIC">/Users/christophe/Downloads/IMG_0176.HEIC</a></div>
+                <p class="score">Top label: <span class="label">a landscape or nature photo</span> (93.0%)</p>
+                <p class="score">Real score: 96.6% | Non-real: 3.4%</p>
+<p class="metadata-error">No metadata available</p>            </div>
+        </div>
+    </div>
+    <div class="image-item real">
+        <div class="content-wrapper">
+            <div class="image-section">
+                <img class="thumbnail" src="file:///Users/christophe/Downloads/PHOTO-2025-08-06-13-26-51.jpg" onerror="this.style.display='none'" />
+            </div>
+            <div class="info-section">
+                <div class="filepath"><a href="file:///Users/christophe/Downloads/PHOTO-2025-08-06-13-26-51.jpg">/Users/christophe/Downloads/PHOTO-2025-08-06-13-26-51.jpg</a></div>
+                <p class="score">Top label: <span class="label">a landscape or nature photo</span> (69.8%)</p>
+                <p class="score">Real score: 92.4% | Non-real: 7.6%</p>
+<div class="metadata">
+<h4>📊 Metadata</h4>
+<table class="metadata-table">
+<tr><td class="meta-label">Format:</td>
+<td>JPEG</td></tr>
+<tr><td class="meta-label">Dimensions:</td>
+<td>1600x1200</td></tr>
+<tr><td class="meta-label">File Size:</td>
+<td>226.3 KB</td></tr>
+<tr><td colspan="2" class="no-exif">❌ No EXIF data</td></tr>
+</table>
+</div>            </div>
+        </div>
+    </div>
+    <div class="image-item real">
+        <div class="content-wrapper">
+            <div class="image-section">
+                <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_3508.PNG" onerror="this.style.display='none'" />
+            </div>
+            <div class="info-section">
+                <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_3508.PNG">/Users/christophe/Downloads/IMG_3508.PNG</a></div>
+                <p class="score">Top label: <span class="label">a family photo with people</span> (40.6%)</p>
+                <p class="score">Real score: 68.9% | Non-real: 31.1%</p>
+<div class="metadata">
+<h4>📊 Metadata</h4>
+<table class="metadata-table">
+<tr><td class="meta-label">Format:</td>
+<td>PNG</td></tr>
+<tr><td class="meta-label">Dimensions:</td>
+<td>828x1792</td></tr>
+<tr><td class="meta-label">File Size:</td>
+<td>78.9 KB</td></tr>
+<tr class="exif-section"><td colspan="2"><strong>EXIF Data:</strong></td></tr>
+<tr><td class="meta-label">Date Taken:</td>
+<td>2024-10-29T19:38:04</td></tr>
+</table>
+</div>            </div>
+        </div>
     </div>
 
     <h2>Non-Real Photos</h2>
     <div class="image-item non-real">
-        <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_0174.HEIC">/Users/christophe/Downloads/IMG_0174.HEIC</a></div>
-        <p class="error">Error: Failed to open image: cannot identify image file '/Users/christophe/Downloads/IMG_0174.HEIC'</p>
-        <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_0174.HEIC" onerror="this.style.display='none'" />
+        <div class="content-wrapper">
+            <div class="image-section">
+                <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_3486.HEIC" onerror="this.style.display='none'" />
+            </div>
+            <div class="info-section">
+                <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_3486.HEIC">/Users/christophe/Downloads/IMG_3486.HEIC</a></div>
+                <p class="score">Top label: <span class="label">a screenshot of a phone or computer</span> (35.5%)</p>
+                <p class="score">Real score: 1.1% | Non-real: 98.9%</p>
+<p class="metadata-error">No metadata available</p>            </div>
+        </div>
     </div>
     <div class="image-item non-real">
-        <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_3726.PNG">/Users/christophe/Downloads/IMG_3726.PNG</a></div>
-        <p class="score">Top label: <span class="label">a screenshot of a phone or computer</span> (51.2%)</p>
-        <p class="score">Real score: 0.4% | Non-real: 99.6%</p>
-        <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_3726.PNG" onerror="this.style.display='none'" />
+        <div class="content-wrapper">
+            <div class="image-section">
+                <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_6422.jpg" onerror="this.style.display='none'" />
+            </div>
+            <div class="info-section">
+                <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_6422.jpg">/Users/christophe/Downloads/IMG_6422.jpg</a></div>
+                <p class="error">Error: Failed to open image: cannot identify image file '/Users/christophe/Downloads/IMG_6422.jpg'</p>
+<p class="metadata-error">No metadata available</p>            </div>
+        </div>
     </div>
     <div class="image-item non-real">
-        <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_4033.JPG">/Users/christophe/Downloads/IMG_4033.JPG</a></div>
-        <p class="score">Top label: <span class="label">a screenshot of a phone or computer</span> (71.9%)</p>
-        <p class="score">Real score: 11.1% | Non-real: 88.9%</p>
-        <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_4033.JPG" onerror="this.style.display='none'" />
+        <div class="content-wrapper">
+            <div class="image-section">
+                <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_6448.jpg" onerror="this.style.display='none'" />
+            </div>
+            <div class="info-section">
+                <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_6448.jpg">/Users/christophe/Downloads/IMG_6448.jpg</a></div>
+                <p class="error">Error: Failed to open image: cannot identify image file '/Users/christophe/Downloads/IMG_6448.jpg'</p>
+<p class="metadata-error">No metadata available</p>            </div>
+        </div>
     </div>
     <div class="image-item non-real">
-        <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_0285.HEIC">/Users/christophe/Downloads/IMG_0285.HEIC</a></div>
-        <p class="error">Error: Failed to open image: cannot identify image file '/Users/christophe/Downloads/IMG_0285.HEIC'</p>
-        <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_0285.HEIC" onerror="this.style.display='none'" />
+        <div class="content-wrapper">
+            <div class="image-section">
+                <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_3505.PNG" onerror="this.style.display='none'" />
+            </div>
+            <div class="info-section">
+                <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_3505.PNG">/Users/christophe/Downloads/IMG_3505.PNG</a></div>
+                <p class="score">Top label: <span class="label">a screenshot of a phone or computer</span> (80.1%)</p>
+                <p class="score">Real score: 1.5% | Non-real: 98.5%</p>
+<div class="metadata">
+<h4>📊 Metadata</h4>
+<table class="metadata-table">
+<tr><td class="meta-label">Format:</td>
+<td>PNG</td></tr>
+<tr><td class="meta-label">Dimensions:</td>
+<td>828x1792</td></tr>
+<tr><td class="meta-label">File Size:</td>
+<td>126.3 KB</td></tr>
+<tr class="exif-section"><td colspan="2"><strong>EXIF Data:</strong></td></tr>
+<tr><td class="meta-label">Date Taken:</td>
+<td>2024-10-29T19:36:04</td></tr>
+</table>
+</div>            </div>
+        </div>
     </div>
     <div class="image-item non-real">
-        <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_3510.HEIC">/Users/christophe/Downloads/IMG_3510.HEIC</a></div>
-        <p class="error">Error: Failed to open image: cannot identify image file '/Users/christophe/Downloads/IMG_3510.HEIC'</p>
-        <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_3510.HEIC" onerror="this.style.display='none'" />
+        <div class="content-wrapper">
+            <div class="image-section">
+                <img class="thumbnail" src="file:///Users/christophe/Downloads/Untitled%20%2823%29.png" onerror="this.style.display='none'" />
+            </div>
+            <div class="info-section">
+                <div class="filepath"><a href="file:///Users/christophe/Downloads/Untitled%20%2823%29.png">/Users/christophe/Downloads/Untitled (23).png</a></div>
+                <p class="score">Top label: <span class="label">a screenshot of a phone or computer</span> (66.3%)</p>
+                <p class="score">Real score: 2.0% | Non-real: 98.0%</p>
+<div class="metadata">
+<h4>📊 Metadata</h4>
+<table class="metadata-table">
+<tr><td class="meta-label">Format:</td>
+<td>PNG</td></tr>
+<tr><td class="meta-label">Dimensions:</td>
+<td>2856x2009</td></tr>
+<tr><td class="meta-label">File Size:</td>
+<td>151.3 KB</td></tr>
+<tr><td colspan="2" class="no-exif">❌ No EXIF data</td></tr>
+</table>
+</div>            </div>
+        </div>
     </div>
     <div class="image-item non-real">
-        <div class="filepath"><a href="file:///Users/christophe/Downloads/5435807288831303026.JPG">/Users/christophe/Downloads/5435807288831303026.JPG</a></div>
-        <p class="score">Top label: <span class="label">a photo of a document or paper</span> (91.6%)</p>
-        <p class="score">Real score: 0.1% | Non-real: 99.9%</p>
-        <img class="thumbnail" src="file:///Users/christophe/Downloads/5435807288831303026.JPG" onerror="this.style.display='none'" />
+        <div class="content-wrapper">
+            <div class="image-section">
+                <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_0108.PNG" onerror="this.style.display='none'" />
+            </div>
+            <div class="info-section">
+                <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_0108.PNG">/Users/christophe/Downloads/IMG_0108.PNG</a></div>
+                <p class="score">Top label: <span class="label">a screenshot of a phone or computer</span> (87.8%)</p>
+                <p class="score">Real score: 4.6% | Non-real: 95.4%</p>
+<div class="metadata">
+<h4>📊 Metadata</h4>
+<table class="metadata-table">
+<tr><td class="meta-label">Format:</td>
+<td>PNG</td></tr>
+<tr><td class="meta-label">Dimensions:</td>
+<td>1170x2532</td></tr>
+<tr><td class="meta-label">File Size:</td>
+<td>128.0 KB</td></tr>
+<tr class="exif-section"><td colspan="2"><strong>EXIF Data:</strong></td></tr>
+<tr><td class="meta-label">Date Taken:</td>
+<td>2025-12-08T14:03:43</td></tr>
+</table>
+</div>            </div>
+        </div>
     </div>
     <div class="image-item non-real">
-        <div class="filepath"><a href="file:///Users/christophe/Downloads/a5385218-e167-4361-80cb-5b8f6ecd5dd9.jpg">/Users/christophe/Downloads/a5385218-e167-4361-80cb-5b8f6ecd5dd9.jpg</a></div>
-        <p class="score">Top label: <span class="label">a screenshot of a phone or computer</span> (35.5%)</p>
-        <p class="score">Real score: 43.0% | Non-real: 57.0%</p>
-        <img class="thumbnail" src="file:///Users/christophe/Downloads/a5385218-e167-4361-80cb-5b8f6ecd5dd9.jpg" onerror="this.style.display='none'" />
+        <div class="content-wrapper">
+            <div class="image-section">
+                <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_0112.jpg" onerror="this.style.display='none'" />
+            </div>
+            <div class="info-section">
+                <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_0112.jpg">/Users/christophe/Downloads/IMG_0112.jpg</a></div>
+                <p class="score">Top label: <span class="label">a photo of a document or paper</span> (50.1%)</p>
+                <p class="score">Real score: 2.2% | Non-real: 97.8%</p>
+<div class="metadata">
+<h4>📊 Metadata</h4>
+<table class="metadata-table">
+<tr><td class="meta-label">Format:</td>
+<td>MPO</td></tr>
+<tr><td class="meta-label">Dimensions:</td>
+<td>4284x5712</td></tr>
+<tr><td class="meta-label">File Size:</td>
+<td>5029.9 KB</td></tr>
+<tr class="exif-section"><td colspan="2"><strong>EXIF Data:</strong></td></tr>
+<tr><td class="meta-label">Date Taken:</td>
+<td>2025-12-13T15:23:43</td></tr>
+<tr><td class="meta-label">Camera:</td>
+<td>Apple iPhone 16e</td></tr>
+</table>
+</div>            </div>
+        </div>
     </div>
     <div class="image-item non-real">
-        <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_2855.JPG">/Users/christophe/Downloads/IMG_2855.JPG</a></div>
-        <p class="score">Top label: <span class="label">a photo of a document or paper</span> (96.4%)</p>
-        <p class="score">Real score: 0.2% | Non-real: 99.8%</p>
-        <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_2855.JPG" onerror="this.style.display='none'" />
+        <div class="content-wrapper">
+            <div class="image-section">
+                <img class="thumbnail" src="file:///Users/christophe/Downloads/Capture%20d%E2%80%99e%CC%81cran%C2%A0.%202025-10-06%20a%CC%80%2013.51.54.jpeg" onerror="this.style.display='none'" />
+            </div>
+            <div class="info-section">
+                <div class="filepath"><a href="file:///Users/christophe/Downloads/Capture%20d%E2%80%99e%CC%81cran%C2%A0.%202025-10-06%20a%CC%80%2013.51.54.jpeg">/Users/christophe/Downloads/Capture d’écran . 2025-10-06 à 13.51.54.jpeg</a></div>
+                <p class="score">Top label: <span class="label">a screenshot of a phone or computer</span> (91.9%)</p>
+                <p class="score">Real score: 8.0% | Non-real: 92.0%</p>
+<div class="metadata">
+<h4>📊 Metadata</h4>
+<table class="metadata-table">
+<tr><td class="meta-label">Format:</td>
+<td>JPEG</td></tr>
+<tr><td class="meta-label">Dimensions:</td>
+<td>1125x2436</td></tr>
+<tr><td class="meta-label">File Size:</td>
+<td>972.1 KB</td></tr>
+<tr class="exif-section"><td colspan="2"><strong>EXIF Data:</strong></td></tr>
+</table>
+</div>            </div>
+        </div>
     </div>
     <div class="image-item non-real">
-        <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_0427.HEIC">/Users/christophe/Downloads/IMG_0427.HEIC</a></div>
-        <p class="error">Error: Failed to open image: cannot identify image file '/Users/christophe/Downloads/IMG_0427.HEIC'</p>
-        <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_0427.HEIC" onerror="this.style.display='none'" />
+        <div class="content-wrapper">
+            <div class="image-section">
+                <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_3773.HEIC" onerror="this.style.display='none'" />
+            </div>
+            <div class="info-section">
+                <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_3773.HEIC">/Users/christophe/Downloads/IMG_3773.HEIC</a></div>
+                <p class="score">Top label: <span class="label">a photo of a document or paper</span> (55.3%)</p>
+                <p class="score">Real score: 1.5% | Non-real: 98.5%</p>
+<p class="metadata-error">No metadata available</p>            </div>
+        </div>
     </div>
     <div class="image-item non-real">
-        <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_3365.jpg">/Users/christophe/Downloads/IMG_3365.jpg</a></div>
-        <p class="score">Top label: <span class="label">a photo of a document or paper</span> (98.0%)</p>
-        <p class="score">Real score: 0.3% | Non-real: 99.7%</p>
-        <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_3365.jpg" onerror="this.style.display='none'" />
+        <div class="content-wrapper">
+            <div class="image-section">
+                <img class="thumbnail" src="file:///Users/christophe/Downloads/iMyFone%20Fixppo%20Installer.app/Contents/Resources/not_checked%402x.png" onerror="this.style.display='none'" />
+            </div>
+            <div class="info-section">
+                <div class="filepath"><a href="file:///Users/christophe/Downloads/iMyFone%20Fixppo%20Installer.app/Contents/Resources/not_checked%402x.png">/Users/christophe/Downloads/iMyFone Fixppo Installer.app/Contents/Resources/not_checked@2x.png</a></div>
+                <p class="score">Top label: <span class="label">a photo of a receipt or bill</span> (42.9%)</p>
+                <p class="score">Real score: 21.9% | Non-real: 78.1%</p>
+<div class="metadata">
+<h4>📊 Metadata</h4>
+<table class="metadata-table">
+<tr><td class="meta-label">Format:</td>
+<td>PNG</td></tr>
+<tr><td class="meta-label">Dimensions:</td>
+<td>32x32</td></tr>
+<tr><td class="meta-label">File Size:</td>
+<td>0.1 KB</td></tr>
+<tr><td colspan="2" class="no-exif">❌ No EXIF data</td></tr>
+</table>
+</div>            </div>
+        </div>
     </div>
     <div class="image-item non-real">
-        <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_0112.jpg">/Users/christophe/Downloads/IMG_0112.jpg</a></div>
-        <p class="score">Top label: <span class="label">a photo of a document or paper</span> (50.1%)</p>
-        <p class="score">Real score: 2.2% | Non-real: 97.8%</p>
-        <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_0112.jpg" onerror="this.style.display='none'" />
+        <div class="content-wrapper">
+            <div class="image-section">
+                <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_4026.PNG" onerror="this.style.display='none'" />
+            </div>
+            <div class="info-section">
+                <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_4026.PNG">/Users/christophe/Downloads/IMG_4026.PNG</a></div>
+                <p class="score">Top label: <span class="label">a screenshot of a phone or computer</span> (93.3%)</p>
+                <p class="score">Real score: 1.7% | Non-real: 98.3%</p>
+<div class="metadata">
+<h4>📊 Metadata</h4>
+<table class="metadata-table">
+<tr><td class="meta-label">Format:</td>
+<td>PNG</td></tr>
+<tr><td class="meta-label">Dimensions:</td>
+<td>828x1792</td></tr>
+<tr><td class="meta-label">File Size:</td>
+<td>141.0 KB</td></tr>
+<tr class="exif-section"><td colspan="2"><strong>EXIF Data:</strong></td></tr>
+<tr><td class="meta-label">Date Taken:</td>
+<td>2025-01-30T11:24:14</td></tr>
+</table>
+</div>            </div>
+        </div>
     </div>
     <div class="image-item non-real">
-        <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_3489.HEIC">/Users/christophe/Downloads/IMG_3489.HEIC</a></div>
-        <p class="error">Error: Failed to open image: cannot identify image file '/Users/christophe/Downloads/IMG_3489.HEIC'</p>
-        <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_3489.HEIC" onerror="this.style.display='none'" />
+        <div class="content-wrapper">
+            <div class="image-section">
+                <img class="thumbnail" src="file:///Users/christophe/Downloads/Capture%20d%E2%80%99%C3%A9cran%202024-12-31%20%C3%A0%2010.51.57.png" onerror="this.style.display='none'" />
+            </div>
+            <div class="info-section">
+                <div class="filepath"><a href="file:///Users/christophe/Downloads/Capture%20d%E2%80%99%C3%A9cran%202024-12-31%20%C3%A0%2010.51.57.png">/Users/christophe/Downloads/Capture d’écran 2024-12-31 à 10.51.57.png</a></div>
+                <p class="score">Top label: <span class="label">a photo of a document or paper</span> (97.9%)</p>
+                <p class="score">Real score: 0.1% | Non-real: 99.9%</p>
+<div class="metadata">
+<h4>📊 Metadata</h4>
+<table class="metadata-table">
+<tr><td class="meta-label">Format:</td>
+<td>PNG</td></tr>
+<tr><td class="meta-label">Dimensions:</td>
+<td>1400x1090</td></tr>
+<tr><td class="meta-label">File Size:</td>
+<td>343.5 KB</td></tr>
+<tr class="exif-section"><td colspan="2"><strong>EXIF Data:</strong></td></tr>
+</table>
+</div>            </div>
+        </div>
     </div>
     <div class="image-item non-real">
-        <div class="filepath"><a href="file:///Users/christophe/Downloads/Carte%20grise%20Qashqai.jpg">/Users/christophe/Downloads/Carte grise Qashqai.jpg</a></div>
-        <p class="score">Top label: <span class="label">a photo of a document or paper</span> (89.0%)</p>
-        <p class="score">Real score: 0.0% | Non-real: 100.0%</p>
-        <img class="thumbnail" src="file:///Users/christophe/Downloads/Carte%20grise%20Qashqai.jpg" onerror="this.style.display='none'" />
+        <div class="content-wrapper">
+            <div class="image-section">
+                <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_0111.jpg" onerror="this.style.display='none'" />
+            </div>
+            <div class="info-section">
+                <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_0111.jpg">/Users/christophe/Downloads/IMG_0111.jpg</a></div>
+                <p class="score">Top label: <span class="label">a screenshot of a phone or computer</span> (95.5%)</p>
+                <p class="score">Real score: 3.6% | Non-real: 96.4%</p>
+<div class="metadata">
+<h4>📊 Metadata</h4>
+<table class="metadata-table">
+<tr><td class="meta-label">Format:</td>
+<td>JPEG</td></tr>
+<tr><td class="meta-label">Dimensions:</td>
+<td>696x996</td></tr>
+<tr><td class="meta-label">File Size:</td>
+<td>146.9 KB</td></tr>
+<tr class="exif-section"><td colspan="2"><strong>EXIF Data:</strong></td></tr>
+</table>
+</div>            </div>
+        </div>
     </div>
     <div class="image-item non-real">
-        <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_0417.jpeg">/Users/christophe/Downloads/IMG_0417.jpeg</a></div>
-        <p class="error">Error: Failed to open image: cannot identify image file '/Users/christophe/Downloads/IMG_0417.jpeg'</p>
-        <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_0417.jpeg" onerror="this.style.display='none'" />
+        <div class="content-wrapper">
+            <div class="image-section">
+                <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_3418.HEIC" onerror="this.style.display='none'" />
+            </div>
+            <div class="info-section">
+                <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_3418.HEIC">/Users/christophe/Downloads/IMG_3418.HEIC</a></div>
+                <p class="score">Top label: <span class="label">a screenshot of a phone or computer</span> (98.8%)</p>
+                <p class="score">Real score: 0.1% | Non-real: 99.9%</p>
+<p class="metadata-error">No metadata available</p>            </div>
+        </div>
     </div>
     <div class="image-item non-real">
-        <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_3462%202.PNG">/Users/christophe/Downloads/IMG_3462 2.PNG</a></div>
-        <p class="score">Top label: <span class="label">a screenshot of a phone or computer</span> (99.0%)</p>
-        <p class="score">Real score: 0.3% | Non-real: 99.7%</p>
-        <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_3462%202.PNG" onerror="this.style.display='none'" />
+        <div class="content-wrapper">
+            <div class="image-section">
+                <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_3761.HEIC" onerror="this.style.display='none'" />
+            </div>
+            <div class="info-section">
+                <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_3761.HEIC">/Users/christophe/Downloads/IMG_3761.HEIC</a></div>
+                <p class="score">Top label: <span class="label">a screenshot of a phone or computer</span> (65.5%)</p>
+                <p class="score">Real score: 28.3% | Non-real: 71.7%</p>
+<p class="metadata-error">No metadata available</p>            </div>
+        </div>
     </div>
     <div class="image-item non-real">
-        <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_6397.JPG">/Users/christophe/Downloads/IMG_6397.JPG</a></div>
-        <p class="error">Error: Failed to open image: cannot identify image file '/Users/christophe/Downloads/IMG_6397.JPG'</p>
-        <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_6397.JPG" onerror="this.style.display='none'" />
+        <div class="content-wrapper">
+            <div class="image-section">
+                <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_3593.HEIC" onerror="this.style.display='none'" />
+            </div>
+            <div class="info-section">
+                <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_3593.HEIC">/Users/christophe/Downloads/IMG_3593.HEIC</a></div>
+                <p class="score">Top label: <span class="label">a photo of a receipt or bill</span> (100.0%)</p>
+                <p class="score">Real score: 0.0% | Non-real: 100.0%</p>
+<p class="metadata-error">No metadata available</p>            </div>
+        </div>
     </div>
     <div class="image-item non-real">
-        <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_6431.jpg">/Users/christophe/Downloads/IMG_6431.jpg</a></div>
-        <p class="error">Error: Failed to open image: cannot identify image file '/Users/christophe/Downloads/IMG_6431.jpg'</p>
-        <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_6431.jpg" onerror="this.style.display='none'" />
+        <div class="content-wrapper">
+            <div class="image-section">
+                <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_3488.HEIC" onerror="this.style.display='none'" />
+            </div>
+            <div class="info-section">
+                <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_3488.HEIC">/Users/christophe/Downloads/IMG_3488.HEIC</a></div>
+                <p class="score">Top label: <span class="label">a screenshot of a phone or computer</span> (99.2%)</p>
+                <p class="score">Real score: 0.2% | Non-real: 99.8%</p>
+<p class="metadata-error">No metadata available</p>            </div>
+        </div>
     </div>
     <div class="image-item non-real">
-        <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_3755.HEIC">/Users/christophe/Downloads/IMG_3755.HEIC</a></div>
-        <p class="error">Error: Failed to open image: cannot identify image file '/Users/christophe/Downloads/IMG_3755.HEIC'</p>
-        <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_3755.HEIC" onerror="this.style.display='none'" />
+        <div class="content-wrapper">
+            <div class="image-section">
+                <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_3465.HEIC" onerror="this.style.display='none'" />
+            </div>
+            <div class="info-section">
+                <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_3465.HEIC">/Users/christophe/Downloads/IMG_3465.HEIC</a></div>
+                <p class="error">Error: Failed to open image: cannot identify image file '/Users/christophe/Downloads/IMG_3465.HEIC'</p>
+<p class="metadata-error">No metadata available</p>            </div>
+        </div>
     </div>
     <div class="image-item non-real">
-        <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_3528.PNG">/Users/christophe/Downloads/IMG_3528.PNG</a></div>
-        <p class="score">Top label: <span class="label">a photo of a document or paper</span> (69.6%)</p>
-        <p class="score">Real score: 0.5% | Non-real: 99.5%</p>
-        <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_3528.PNG" onerror="this.style.display='none'" />
+        <div class="content-wrapper">
+            <div class="image-section">
+                <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_3393%202.HEIC" onerror="this.style.display='none'" />
+            </div>
+            <div class="info-section">
+                <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_3393%202.HEIC">/Users/christophe/Downloads/IMG_3393 2.HEIC</a></div>
+                <p class="score">Top label: <span class="label">a screenshot of a phone or computer</span> (75.9%)</p>
+                <p class="score">Real score: 1.5% | Non-real: 98.5%</p>
+<p class="metadata-error">No metadata available</p>            </div>
+        </div>
     </div>
     <div class="image-item non-real">
-        <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_3440.HEIC">/Users/christophe/Downloads/IMG_3440.HEIC</a></div>
-        <p class="error">Error: Failed to open image: cannot identify image file '/Users/christophe/Downloads/IMG_3440.HEIC'</p>
-        <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_3440.HEIC" onerror="this.style.display='none'" />
+        <div class="content-wrapper">
+            <div class="image-section">
+                <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_3748.HEIC" onerror="this.style.display='none'" />
+            </div>
+            <div class="info-section">
+                <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_3748.HEIC">/Users/christophe/Downloads/IMG_3748.HEIC</a></div>
+                <p class="score">Top label: <span class="label">a screenshot of a phone or computer</span> (80.7%)</p>
+                <p class="score">Real score: 7.0% | Non-real: 93.0%</p>
+<p class="metadata-error">No metadata available</p>            </div>
+        </div>
     </div>
     <div class="image-item non-real">
-        <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_3395.HEIC">/Users/christophe/Downloads/IMG_3395.HEIC</a></div>
-        <p class="error">Error: Failed to open image: cannot identify image file '/Users/christophe/Downloads/IMG_3395.HEIC'</p>
-        <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_3395.HEIC" onerror="this.style.display='none'" />
+        <div class="content-wrapper">
+            <div class="image-section">
+                <img class="thumbnail" src="file:///Users/christophe/Downloads/Untitled%20%288%29.png" onerror="this.style.display='none'" />
+            </div>
+            <div class="info-section">
+                <div class="filepath"><a href="file:///Users/christophe/Downloads/Untitled%20%288%29.png">/Users/christophe/Downloads/Untitled (8).png</a></div>
+                <p class="score">Top label: <span class="label">a screenshot of a phone or computer</span> (48.8%)</p>
+                <p class="score">Real score: 3.5% | Non-real: 96.5%</p>
+<div class="metadata">
+<h4>📊 Metadata</h4>
+<table class="metadata-table">
+<tr><td class="meta-label">Format:</td>
+<td>PNG</td></tr>
+<tr><td class="meta-label">Dimensions:</td>
+<td>593x537</td></tr>
+<tr><td class="meta-label">File Size:</td>
+<td>3.8 KB</td></tr>
+<tr><td colspan="2" class="no-exif">❌ No EXIF data</td></tr>
+</table>
+</div>            </div>
+        </div>
     </div>
     <div class="image-item non-real">
-        <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_3512.PNG">/Users/christophe/Downloads/IMG_3512.PNG</a></div>
-        <p class="score">Top label: <span class="label">a photo of a receipt or bill</span> (59.4%)</p>
-        <p class="score">Real score: 7.6% | Non-real: 92.4%</p>
-        <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_3512.PNG" onerror="this.style.display='none'" />
-    </div>
-    <div class="image-item non-real">
-        <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_3461.HEIC">/Users/christophe/Downloads/IMG_3461.HEIC</a></div>
-        <p class="error">Error: Failed to open image: cannot identify image file '/Users/christophe/Downloads/IMG_3461.HEIC'</p>
-        <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_3461.HEIC" onerror="this.style.display='none'" />
-    </div>
-    <div class="image-item non-real">
-        <div class="filepath"><a href="file:///Users/christophe/Downloads/calendrier-octobre-2025.jpg">/Users/christophe/Downloads/calendrier-octobre-2025.jpg</a></div>
-        <p class="score">Top label: <span class="label">a photo of a document or paper</span> (43.5%)</p>
-        <p class="score">Real score: 17.2% | Non-real: 82.8%</p>
-        <img class="thumbnail" src="file:///Users/christophe/Downloads/calendrier-octobre-2025.jpg" onerror="this.style.display='none'" />
-    </div>
-    <div class="image-item non-real">
-        <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_3766.HEIC">/Users/christophe/Downloads/IMG_3766.HEIC</a></div>
-        <p class="error">Error: Failed to open image: cannot identify image file '/Users/christophe/Downloads/IMG_3766.HEIC'</p>
-        <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_3766.HEIC" onerror="this.style.display='none'" />
+        <div class="content-wrapper">
+            <div class="image-section">
+                <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_0277.HEIC" onerror="this.style.display='none'" />
+            </div>
+            <div class="info-section">
+                <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_0277.HEIC">/Users/christophe/Downloads/IMG_0277.HEIC</a></div>
+                <p class="score">Top label: <span class="label">a photo of a document or paper</span> (96.0%)</p>
+                <p class="score">Real score: 0.8% | Non-real: 99.2%</p>
+<p class="metadata-error">No metadata available</p>            </div>
+        </div>
     </div>
 
 </body>
