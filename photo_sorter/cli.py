@@ -1,17 +1,82 @@
 """CLI module - main entry point for photo sorter."""
 
 import argparse
+import json
 import random
 import sys
+from datetime import datetime
 from pathlib import Path
-from typing import List, Optional
+from typing import List, Optional, Dict, Any
 
+from PIL import Image
+from PIL.ExifTags import TAGS, GPSTAGS
 from tqdm import tqdm
 
 from photo_sorter.scanner import scan_sources, is_screenshot_by_filename
 from photo_sorter.classifier import PhotoClassifier
 from photo_sorter.copier import copy_photo
 from photo_sorter.state import ProcessingState, BATCH_SIZE
+
+
+def extract_metadata(image_path: Path) -> Dict[str, Any]:
+    """Extract EXIF metadata from image."""
+    metadata = {
+        "has_exif": False,
+        "date_taken": None,
+        "camera_make": None,
+        "camera_model": None,
+        "gps": None,
+        "dimensions": None,
+        "file_size_kb": None,
+    }
+    
+    try:
+        # Get file size
+        metadata["file_size_kb"] = round(image_path.stat().st_size / 1024, 2)
+        
+        with Image.open(image_path) as img:
+            metadata["dimensions"] = f"{img.size[0]}x{img.size[1]}"
+            metadata["format"] = img.format
+            
+            exif = img._getexif()
+            if exif:
+                metadata["has_exif"] = True
+                
+                # Extract date taken
+                for tag_id in [36867, 306]:  # DateTimeOriginal, DateTime
+                    if tag_id in exif:
+                        date_str = exif[tag_id]
+                        try:
+                            dt = datetime.strptime(date_str, "%Y:%m:%d %H:%M:%S")
+                            metadata["date_taken"] = dt.isoformat()
+                            break
+                        except ValueError:
+                            pass
+                
+                # Extract camera info
+                for tag_id, tag_name in TAGS.items():
+                    if tag_id in exif:
+                        if tag_name == "Make":
+                            metadata["camera_make"] = str(exif[tag_id]).strip()
+                        elif tag_name == "Model":
+                            metadata["camera_model"] = str(exif[tag_id]).strip()
+                
+                # Extract GPS info
+                if 34853 in exif:  # GPSInfo tag
+                    gps_info = {}
+                    gps_data = exif[34853]
+                    for key in gps_data.keys():
+                        decode = GPSTAGS.get(key, key)
+                        gps_info[decode] = gps_data[key]
+                    
+                    # Convert to readable format
+                    if gps_info:
+                        metadata["gps"] = gps_info
+    
+    except Exception as e:
+        metadata["error"] = str(e)
+    
+    return metadata
 
 
 def parse_args():
@@ -54,8 +119,56 @@ def parse_args():
     return parser.parse_args()
 
 
+def format_metadata(metadata: Dict[str, Any]) -> str:
+    """Format metadata as HTML."""
+    if not metadata or metadata.get("error"):
+        return '<p class="metadata-error">No metadata available</p>'
+    
+    html_parts = ['<div class="metadata">']
+    html_parts.append('<h4>📊 Metadata</h4>')
+    html_parts.append('<table class="metadata-table">')
+    
+    # File info
+    html_parts.append('<tr><td class="meta-label">Format:</td>')
+    html_parts.append(f'<td>{metadata.get("format", "Unknown")}</td></tr>')
+    
+    html_parts.append('<tr><td class="meta-label">Dimensions:</td>')
+    html_parts.append(f'<td>{metadata.get("dimensions", "Unknown")}</td></tr>')
+    
+    html_parts.append('<tr><td class="meta-label">File Size:</td>')
+    size_kb = metadata.get("file_size_kb")
+    if size_kb:
+        html_parts.append(f'<td>{size_kb:.1f} KB</td></tr>')
+    else:
+        html_parts.append('<td>Unknown</td></tr>')
+    
+    # EXIF data
+    if metadata.get("has_exif"):
+        html_parts.append('<tr class="exif-section"><td colspan="2"><strong>EXIF Data:</strong></td></tr>')
+        
+        if metadata.get("date_taken"):
+            html_parts.append('<tr><td class="meta-label">Date Taken:</td>')
+            html_parts.append(f'<td>{metadata["date_taken"]}</td></tr>')
+        
+        if metadata.get("camera_make") or metadata.get("camera_model"):
+            camera = " ".join(filter(None, [metadata.get("camera_make"), metadata.get("camera_model")]))
+            html_parts.append('<tr><td class="meta-label">Camera:</td>')
+            html_parts.append(f'<td>{camera}</td></tr>')
+        
+        if metadata.get("gps"):
+            html_parts.append('<tr><td class="meta-label">GPS:</td>')
+            html_parts.append(f'<td>✓ Present</td></tr>')
+    else:
+        html_parts.append('<tr><td colspan="2" class="no-exif">❌ No EXIF data</td></tr>')
+    
+    html_parts.append('</table>')
+    html_parts.append('</div>')
+    
+    return '\n'.join(html_parts)
+
+
 def generate_html_report(results: list, output_path: Path):
-    """Generate an HTML report with clickable image paths."""
+    """Generate an HTML report with clickable image paths and metadata."""
     
     real_photos = [r for r in results if r["is_real"]]
     non_real = [r for r in results if not r["is_real"]]
@@ -69,6 +182,7 @@ def generate_html_report(results: list, output_path: Path):
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; margin: 40px; background: #f5f5f5; }
         h1 { color: #333; }
         h2 { color: #555; margin-top: 30px; }
+        h4 { margin: 10px 0 5px 0; color: #666; }
         .summary { background: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
         .image-item { background: white; padding: 15px; margin: 10px 0; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
         .real { border-left: 4px solid #4CAF50; }
@@ -82,6 +196,16 @@ def generate_html_report(results: list, output_path: Path):
         .real-label { color: #4CAF50; }
         .non-real-label { color: #f44336; }
         img.thumbnail { max-width: 200px; max-height: 200px; border-radius: 4px; margin-top: 10px; }
+        .metadata { margin-top: 10px; padding: 10px; background: #f9f9f9; border-radius: 4px; }
+        .metadata-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+        .metadata-table td { padding: 3px 8px; }
+        .meta-label { color: #666; font-weight: bold; width: 120px; }
+        .exif-section { background: #e3f2fd; }
+        .no-exif { color: #999; font-style: italic; }
+        .metadata-error { color: #f44336; }
+        .content-wrapper { display: flex; gap: 20px; align-items: flex-start; }
+        .image-section { flex: 0 0 auto; }
+        .info-section { flex: 1; }
     </style>
 </head>
 <body>
@@ -100,18 +224,27 @@ def generate_html_report(results: list, output_path: Path):
         d = r["details"]
         filepath = r["path"]
         file_url = filepath.as_uri()
+        metadata = r.get("metadata", {})
         
         html += f'    <div class="image-item real">\n'
-        html += f'        <div class="filepath"><a href="{file_url}">{filepath}</a></div>\n'
+        html += f'        <div class="content-wrapper">\n'
+        html += f'            <div class="image-section">\n'
+        html += f'                <img class="thumbnail" src="{file_url}" onerror="this.style.display=\'none\'" />\n'
+        html += f'            </div>\n'
+        html += f'            <div class="info-section">\n'
+        html += f'                <div class="filepath"><a href="{file_url}">{filepath}</a></div>\n'
         
         if "error" in d:
-            html += f'        <p class="error">Error: {d["error"]}</p>\n'
+            html += f'                <p class="error">Error: {d["error"]}</p>\n'
         else:
-            html += f'        <p class="score">Top label: <span class="label">{d["top_label"]}</span> ({d["top_score"]:.1%})</p>\n'
-            html += f'        <p class="score">Real score: {d["real_score"]:.1%} | Non-real: {d["non_real_score"]:.1%}</p>\n'
+            html += f'                <p class="score">Top label: <span class="label">{d["top_label"]}</span> ({d["top_score"]:.1%})</p>\n'
+            html += f'                <p class="score">Real score: {d["real_score"]:.1%} | Non-real: {d["non_real_score"]:.1%}</p>\n'
         
-        # Try to embed thumbnail
-        html += f'        <img class="thumbnail" src="{file_url}" onerror="this.style.display=\'none\'" />\n'
+        # Add metadata
+        html += format_metadata(metadata)
+        
+        html += f'            </div>\n'
+        html += f'        </div>\n'
         html += f'    </div>\n'
     
     html += """
@@ -122,18 +255,27 @@ def generate_html_report(results: list, output_path: Path):
         d = r["details"]
         filepath = r["path"]
         file_url = filepath.as_uri()
+        metadata = r.get("metadata", {})
         
         html += f'    <div class="image-item non-real">\n'
-        html += f'        <div class="filepath"><a href="{file_url}">{filepath}</a></div>\n'
+        html += f'        <div class="content-wrapper">\n'
+        html += f'            <div class="image-section">\n'
+        html += f'                <img class="thumbnail" src="{file_url}" onerror="this.style.display=\'none\'" />\n'
+        html += f'            </div>\n'
+        html += f'            <div class="info-section">\n'
+        html += f'                <div class="filepath"><a href="{file_url}">{filepath}</a></div>\n'
         
         if "error" in d:
-            html += f'        <p class="error">Error: {d["error"]}</p>\n'
+            html += f'                <p class="error">Error: {d["error"]}</p>\n'
         else:
-            html += f'        <p class="score">Top label: <span class="label">{d["top_label"]}</span> ({d["top_score"]:.1%})</p>\n'
-            html += f'        <p class="score">Real score: {d["real_score"]:.1%} | Non-real: {d["non_real_score"]:.1%}</p>\n'
+            html += f'                <p class="score">Top label: <span class="label">{d["top_label"]}</span> ({d["top_score"]:.1%})</p>\n'
+            html += f'                <p class="score">Real score: {d["real_score"]:.1%} | Non-real: {d["non_real_score"]:.1%}</p>\n'
         
-        # Try to embed thumbnail
-        html += f'        <img class="thumbnail" src="{file_url}" onerror="this.style.display=\'none\'" />\n'
+        # Add metadata
+        html += format_metadata(metadata)
+        
+        html += f'            </div>\n'
+        html += f'        </div>\n'
         html += f'    </div>\n'
     
     html += """
@@ -162,10 +304,12 @@ def calibrate_classifier(image_paths: List[Path], num_samples: int = 30, output_
     results = []
     for img_path in tqdm(samples, desc="Classifying"):
         is_real, details = classifier.classify(img_path)
+        metadata = extract_metadata(img_path)
         results.append({
             "path": img_path,
             "is_real": is_real,
             "details": details,
+            "metadata": metadata,
         })
     
     # Print results
