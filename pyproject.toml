@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "photo-sorter"
+version = "0.1.0"
+description = "AI-powered photo sorting tool using CLIP classification"
+readme = "README.md"
+license = {file = "LICENSE"}
+authors = [
+    {name = "Christophe Dufour"}
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+requires-python = ">=3.9"
+dependencies = [
+    "transformers>=4.35.0",
+    "torch>=2.0.0",
+    "Pillow>=10.0.0",
+    "tqdm>=4.65.0",
+]
+
+[project.scripts]
+photo-sorter = "photo_sorter.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["photo_sorter*"]
