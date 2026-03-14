@@ -92,15 +92,21 @@ def calibrate_classifier(image_paths: List[Path], num_samples: int = 30):
     for r in real_photos[:5]:
         d = r["details"]
         print(f"  ✓ {r['path'].name}")
-        print(f"    Top label: {d['top_label']} ({d['top_score']:.2%})")
-        print(f"    Real score: {d['real_score']:.2%}, Non-real: {d['non_real_score']:.2%}")
+        if "error" in d:
+            print(f"    Error: {d['error']}")
+        else:
+            print(f"    Top label: {d['top_label']} ({d['top_score']:.2%})")
+            print(f"    Real score: {d['real_score']:.2%}, Non-real: {d['non_real_score']:.2%}")
     
     print("\n--- Non-Real Photos ---")
     for r in non_real[:5]:
         d = r["details"]
         print(f"  ✗ {r['path'].name}")
-        print(f"    Top label: {d['top_label']} ({d['top_score']:.2%})")
-        print(f"    Real score: {d['real_score']:.2%}, Non-real: {d['non_real_score']:.2%}")
+        if "error" in d:
+            print(f"    Error: {d['error']}")
+        else:
+            print(f"    Top label: {d['top_label']} ({d['top_score']:.2%})")
+            print(f"    Real score: {d['real_score']:.2%}, Non-real: {d['non_real_score']:.2%}")
     
     if len(real_photos) + len(non_real) < num_samples:
         errors = num_samples - len(real_photos) - len(non_real)
