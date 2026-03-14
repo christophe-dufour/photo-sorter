@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Photo Sorter Calibration Report</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; margin: 40px; background: #f5f5f5; }
+        h1 { color: #333; }
+        h2 { color: #555; margin-top: 30px; }
+        .summary { background: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .image-item { background: white; padding: 15px; margin: 10px 0; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .real { border-left: 4px solid #4CAF50; }
+        .non-real { border-left: 4px solid #f44336; }
+        .error { border-left: 4px solid #ff9800; }
+        .filepath { font-family: monospace; background: #f0f0f0; padding: 5px 10px; border-radius: 4px; display: inline-block; margin: 5px 0; }
+        .filepath a { color: #2196F3; text-decoration: none; }
+        .filepath a:hover { text-decoration: underline; }
+        .score { color: #666; font-size: 14px; }
+        .label { font-weight: bold; }
+        .real-label { color: #4CAF50; }
+        .non-real-label { color: #f44336; }
+        img.thumbnail { max-width: 200px; max-height: 200px; border-radius: 4px; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Photo Sorter Calibration Report</h1>
+    <div class="summary">
+        <h2>Summary</h2>
+        <p><strong>Total images tested:</strong> 30</p>
+        <p><strong class="real-label">Real photos detected:</strong> 5</p>
+        <p><strong class="non-real-label">Non-real photos detected:</strong> 25</p>
+    </div>
+    
+    <h2>Real Photos</h2>
+    <div class="image-item real">
+        <div class="filepath"><a href="file:///Users/christophe/Downloads/PHOTO-2025-08-06-13-26-54.jpg">/Users/christophe/Downloads/PHOTO-2025-08-06-13-26-54.jpg</a></div>
+        <p class="score">Top label: <span class="label">a landscape or nature photo</span> (32.4%)</p>
+        <p class="score">Real score: 69.3% | Non-real: 30.7%</p>
+        <img class="thumbnail" src="file:///Users/christophe/Downloads/PHOTO-2025-08-06-13-26-54.jpg" onerror="this.style.display='none'" />
+    </div>
+    <div class="image-item real">
+        <div class="filepath"><a href="file:///Users/christophe/Downloads/8.jpg">/Users/christophe/Downloads/8.jpg</a></div>
+        <p class="score">Top label: <span class="label">a landscape or nature photo</span> (87.6%)</p>
+        <p class="score">Real score: 92.5% | Non-real: 7.5%</p>
+        <img class="thumbnail" src="file:///Users/christophe/Downloads/8.jpg" onerror="this.style.display='none'" />
+    </div>
+    <div class="image-item real">
+        <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_6410%202.jpg">/Users/christophe/Downloads/IMG_6410 2.jpg</a></div>
+        <p class="score">Top label: <span class="label">a landscape or nature photo</span> (71.7%)</p>
+        <p class="score">Real score: 80.2% | Non-real: 19.8%</p>
+        <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_6410%202.jpg" onerror="this.style.display='none'" />
+    </div>
+    <div class="image-item real">
+        <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_6402%202.JPG">/Users/christophe/Downloads/IMG_6402 2.JPG</a></div>
+        <p class="score">Top label: <span class="label">a landscape or nature photo</span> (54.1%)</p>
+        <p class="score">Real score: 92.3% | Non-real: 7.7%</p>
+        <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_6402%202.JPG" onerror="this.style.display='none'" />
+    </div>
+    <div class="image-item real">
+        <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_6398%202.jpg">/Users/christophe/Downloads/IMG_6398 2.jpg</a></div>
+        <p class="score">Top label: <span class="label">a family photo with people</span> (74.3%)</p>
+        <p class="score">Real score: 97.8% | Non-real: 2.2%</p>
+        <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_6398%202.jpg" onerror="this.style.display='none'" />
+    </div>
+
+    <h2>Non-Real Photos</h2>
+    <div class="image-item non-real">
+        <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_0174.HEIC">/Users/christophe/Downloads/IMG_0174.HEIC</a></div>
+        <p class="error">Error: Failed to open image: cannot identify image file '/Users/christophe/Downloads/IMG_0174.HEIC'</p>
+        <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_0174.HEIC" onerror="this.style.display='none'" />
+    </div>
+    <div class="image-item non-real">
+        <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_3726.PNG">/Users/christophe/Downloads/IMG_3726.PNG</a></div>
+        <p class="score">Top label: <span class="label">a screenshot of a phone or computer</span> (51.2%)</p>
+        <p class="score">Real score: 0.4% | Non-real: 99.6%</p>
+        <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_3726.PNG" onerror="this.style.display='none'" />
+    </div>
+    <div class="image-item non-real">
+        <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_4033.JPG">/Users/christophe/Downloads/IMG_4033.JPG</a></div>
+        <p class="score">Top label: <span class="label">a screenshot of a phone or computer</span> (71.9%)</p>
+        <p class="score">Real score: 11.1% | Non-real: 88.9%</p>
+        <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_4033.JPG" onerror="this.style.display='none'" />
+    </div>
+    <div class="image-item non-real">
+        <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_0285.HEIC">/Users/christophe/Downloads/IMG_0285.HEIC</a></div>
+        <p class="error">Error: Failed to open image: cannot identify image file '/Users/christophe/Downloads/IMG_0285.HEIC'</p>
+        <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_0285.HEIC" onerror="this.style.display='none'" />
+    </div>
+    <div class="image-item non-real">
+        <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_3510.HEIC">/Users/christophe/Downloads/IMG_3510.HEIC</a></div>
+        <p class="error">Error: Failed to open image: cannot identify image file '/Users/christophe/Downloads/IMG_3510.HEIC'</p>
+        <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_3510.HEIC" onerror="this.style.display='none'" />
+    </div>
+    <div class="image-item non-real">
+        <div class="filepath"><a href="file:///Users/christophe/Downloads/5435807288831303026.JPG">/Users/christophe/Downloads/5435807288831303026.JPG</a></div>
+        <p class="score">Top label: <span class="label">a photo of a document or paper</span> (91.6%)</p>
+        <p class="score">Real score: 0.1% | Non-real: 99.9%</p>
+        <img class="thumbnail" src="file:///Users/christophe/Downloads/5435807288831303026.JPG" onerror="this.style.display='none'" />
+    </div>
+    <div class="image-item non-real">
+        <div class="filepath"><a href="file:///Users/christophe/Downloads/a5385218-e167-4361-80cb-5b8f6ecd5dd9.jpg">/Users/christophe/Downloads/a5385218-e167-4361-80cb-5b8f6ecd5dd9.jpg</a></div>
+        <p class="score">Top label: <span class="label">a screenshot of a phone or computer</span> (35.5%)</p>
+        <p class="score">Real score: 43.0% | Non-real: 57.0%</p>
+        <img class="thumbnail" src="file:///Users/christophe/Downloads/a5385218-e167-4361-80cb-5b8f6ecd5dd9.jpg" onerror="this.style.display='none'" />
+    </div>
+    <div class="image-item non-real">
+        <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_2855.JPG">/Users/christophe/Downloads/IMG_2855.JPG</a></div>
+        <p class="score">Top label: <span class="label">a photo of a document or paper</span> (96.4%)</p>
+        <p class="score">Real score: 0.2% | Non-real: 99.8%</p>
+        <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_2855.JPG" onerror="this.style.display='none'" />
+    </div>
+    <div class="image-item non-real">
+        <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_0427.HEIC">/Users/christophe/Downloads/IMG_0427.HEIC</a></div>
+        <p class="error">Error: Failed to open image: cannot identify image file '/Users/christophe/Downloads/IMG_0427.HEIC'</p>
+        <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_0427.HEIC" onerror="this.style.display='none'" />
+    </div>
+    <div class="image-item non-real">
+        <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_3365.jpg">/Users/christophe/Downloads/IMG_3365.jpg</a></div>
+        <p class="score">Top label: <span class="label">a photo of a document or paper</span> (98.0%)</p>
+        <p class="score">Real score: 0.3% | Non-real: 99.7%</p>
+        <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_3365.jpg" onerror="this.style.display='none'" />
+    </div>
+    <div class="image-item non-real">
+        <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_0112.jpg">/Users/christophe/Downloads/IMG_0112.jpg</a></div>
+        <p class="score">Top label: <span class="label">a photo of a document or paper</span> (50.1%)</p>
+        <p class="score">Real score: 2.2% | Non-real: 97.8%</p>
+        <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_0112.jpg" onerror="this.style.display='none'" />
+    </div>
+    <div class="image-item non-real">
+        <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_3489.HEIC">/Users/christophe/Downloads/IMG_3489.HEIC</a></div>
+        <p class="error">Error: Failed to open image: cannot identify image file '/Users/christophe/Downloads/IMG_3489.HEIC'</p>
+        <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_3489.HEIC" onerror="this.style.display='none'" />
+    </div>
+    <div class="image-item non-real">
+        <div class="filepath"><a href="file:///Users/christophe/Downloads/Carte%20grise%20Qashqai.jpg">/Users/christophe/Downloads/Carte grise Qashqai.jpg</a></div>
+        <p class="score">Top label: <span class="label">a photo of a document or paper</span> (89.0%)</p>
+        <p class="score">Real score: 0.0% | Non-real: 100.0%</p>
+        <img class="thumbnail" src="file:///Users/christophe/Downloads/Carte%20grise%20Qashqai.jpg" onerror="this.style.display='none'" />
+    </div>
+    <div class="image-item non-real">
+        <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_0417.jpeg">/Users/christophe/Downloads/IMG_0417.jpeg</a></div>
+        <p class="error">Error: Failed to open image: cannot identify image file '/Users/christophe/Downloads/IMG_0417.jpeg'</p>
+        <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_0417.jpeg" onerror="this.style.display='none'" />
+    </div>
+    <div class="image-item non-real">
+        <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_3462%202.PNG">/Users/christophe/Downloads/IMG_3462 2.PNG</a></div>
+        <p class="score">Top label: <span class="label">a screenshot of a phone or computer</span> (99.0%)</p>
+        <p class="score">Real score: 0.3% | Non-real: 99.7%</p>
+        <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_3462%202.PNG" onerror="this.style.display='none'" />
+    </div>
+    <div class="image-item non-real">
+        <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_6397.JPG">/Users/christophe/Downloads/IMG_6397.JPG</a></div>
+        <p class="error">Error: Failed to open image: cannot identify image file '/Users/christophe/Downloads/IMG_6397.JPG'</p>
+        <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_6397.JPG" onerror="this.style.display='none'" />
+    </div>
+    <div class="image-item non-real">
+        <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_6431.jpg">/Users/christophe/Downloads/IMG_6431.jpg</a></div>
+        <p class="error">Error: Failed to open image: cannot identify image file '/Users/christophe/Downloads/IMG_6431.jpg'</p>
+        <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_6431.jpg" onerror="this.style.display='none'" />
+    </div>
+    <div class="image-item non-real">
+        <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_3755.HEIC">/Users/christophe/Downloads/IMG_3755.HEIC</a></div>
+        <p class="error">Error: Failed to open image: cannot identify image file '/Users/christophe/Downloads/IMG_3755.HEIC'</p>
+        <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_3755.HEIC" onerror="this.style.display='none'" />
+    </div>
+    <div class="image-item non-real">
+        <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_3528.PNG">/Users/christophe/Downloads/IMG_3528.PNG</a></div>
+        <p class="score">Top label: <span class="label">a photo of a document or paper</span> (69.6%)</p>
+        <p class="score">Real score: 0.5% | Non-real: 99.5%</p>
+        <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_3528.PNG" onerror="this.style.display='none'" />
+    </div>
+    <div class="image-item non-real">
+        <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_3440.HEIC">/Users/christophe/Downloads/IMG_3440.HEIC</a></div>
+        <p class="error">Error: Failed to open image: cannot identify image file '/Users/christophe/Downloads/IMG_3440.HEIC'</p>
+        <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_3440.HEIC" onerror="this.style.display='none'" />
+    </div>
+    <div class="image-item non-real">
+        <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_3395.HEIC">/Users/christophe/Downloads/IMG_3395.HEIC</a></div>
+        <p class="error">Error: Failed to open image: cannot identify image file '/Users/christophe/Downloads/IMG_3395.HEIC'</p>
+        <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_3395.HEIC" onerror="this.style.display='none'" />
+    </div>
+    <div class="image-item non-real">
+        <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_3512.PNG">/Users/christophe/Downloads/IMG_3512.PNG</a></div>
+        <p class="score">Top label: <span class="label">a photo of a receipt or bill</span> (59.4%)</p>
+        <p class="score">Real score: 7.6% | Non-real: 92.4%</p>
+        <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_3512.PNG" onerror="this.style.display='none'" />
+    </div>
+    <div class="image-item non-real">
+        <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_3461.HEIC">/Users/christophe/Downloads/IMG_3461.HEIC</a></div>
+        <p class="error">Error: Failed to open image: cannot identify image file '/Users/christophe/Downloads/IMG_3461.HEIC'</p>
+        <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_3461.HEIC" onerror="this.style.display='none'" />
+    </div>
+    <div class="image-item non-real">
+        <div class="filepath"><a href="file:///Users/christophe/Downloads/calendrier-octobre-2025.jpg">/Users/christophe/Downloads/calendrier-octobre-2025.jpg</a></div>
+        <p class="score">Top label: <span class="label">a photo of a document or paper</span> (43.5%)</p>
+        <p class="score">Real score: 17.2% | Non-real: 82.8%</p>
+        <img class="thumbnail" src="file:///Users/christophe/Downloads/calendrier-octobre-2025.jpg" onerror="this.style.display='none'" />
+    </div>
+    <div class="image-item non-real">
+        <div class="filepath"><a href="file:///Users/christophe/Downloads/IMG_3766.HEIC">/Users/christophe/Downloads/IMG_3766.HEIC</a></div>
+        <p class="error">Error: Failed to open image: cannot identify image file '/Users/christophe/Downloads/IMG_3766.HEIC'</p>
+        <img class="thumbnail" src="file:///Users/christophe/Downloads/IMG_3766.HEIC" onerror="this.style.display='none'" />
+    </div>
+
+</body>
+</html>

@@ -4,8 +4,12 @@ from pathlib import Path
 from typing import List, Tuple
 
 from PIL import Image
+from pillow_heif import register_heif_opener
 from transformers import CLIPProcessor, CLIPModel
 import torch
+
+# Register HEIF/HEIC support
+register_heif_opener()
 
 
 # Labels for zero-shot classification

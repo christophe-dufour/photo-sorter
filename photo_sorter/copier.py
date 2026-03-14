@@ -7,6 +7,10 @@ from typing import Optional, Tuple
 
 from PIL import Image
 from PIL.ExifTags import TAGS
+from pillow_heif import register_heif_opener
+
+# Register HEIF/HEIC support
+register_heif_opener()
 
 
 def extract_exif_date(image_path: Path) -> Optional[datetime]:
