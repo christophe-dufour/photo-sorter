@@ -54,7 +54,98 @@ def parse_args():
     return parser.parse_args()
 
 
-def calibrate_classifier(image_paths: List[Path], num_samples: int = 30):
+def generate_html_report(results: list, output_path: Path):
+    """Generate an HTML report with clickable image paths."""
+    
+    real_photos = [r for r in results if r["is_real"]]
+    non_real = [r for r in results if not r["is_real"]]
+    
+    html = """<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Photo Sorter Calibration Report</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; margin: 40px; background: #f5f5f5; }
+        h1 { color: #333; }
+        h2 { color: #555; margin-top: 30px; }
+        .summary { background: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .image-item { background: white; padding: 15px; margin: 10px 0; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .real { border-left: 4px solid #4CAF50; }
+        .non-real { border-left: 4px solid #f44336; }
+        .error { border-left: 4px solid #ff9800; }
+        .filepath { font-family: monospace; background: #f0f0f0; padding: 5px 10px; border-radius: 4px; display: inline-block; margin: 5px 0; }
+        .filepath a { color: #2196F3; text-decoration: none; }
+        .filepath a:hover { text-decoration: underline; }
+        .score { color: #666; font-size: 14px; }
+        .label { font-weight: bold; }
+        .real-label { color: #4CAF50; }
+        .non-real-label { color: #f44336; }
+        img.thumbnail { max-width: 200px; max-height: 200px; border-radius: 4px; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Photo Sorter Calibration Report</h1>
+    <div class="summary">
+        <h2>Summary</h2>
+        <p><strong>Total images tested:</strong> """ + str(len(results)) + """</p>
+        <p><strong class="real-label">Real photos detected:</strong> """ + str(len(real_photos)) + """</p>
+        <p><strong class="non-real-label">Non-real photos detected:</strong> """ + str(len(non_real)) + """</p>
+    </div>
+    
+    <h2>Real Photos</h2>
+"""
+    
+    for r in real_photos:
+        d = r["details"]
+        filepath = r["path"]
+        file_url = filepath.as_uri()
+        
+        html += f'    <div class="image-item real">\n'
+        html += f'        <div class="filepath"><a href="{file_url}">{filepath}</a></div>\n'
+        
+        if "error" in d:
+            html += f'        <p class="error">Error: {d["error"]}</p>\n'
+        else:
+            html += f'        <p class="score">Top label: <span class="label">{d["top_label"]}</span> ({d["top_score"]:.1%})</p>\n'
+            html += f'        <p class="score">Real score: {d["real_score"]:.1%} | Non-real: {d["non_real_score"]:.1%}</p>\n'
+        
+        # Try to embed thumbnail
+        html += f'        <img class="thumbnail" src="{file_url}" onerror="this.style.display=\'none\'" />\n'
+        html += f'    </div>\n'
+    
+    html += """
+    <h2>Non-Real Photos</h2>
+"""
+    
+    for r in non_real:
+        d = r["details"]
+        filepath = r["path"]
+        file_url = filepath.as_uri()
+        
+        html += f'    <div class="image-item non-real">\n'
+        html += f'        <div class="filepath"><a href="{file_url}">{filepath}</a></div>\n'
+        
+        if "error" in d:
+            html += f'        <p class="error">Error: {d["error"]}</p>\n'
+        else:
+            html += f'        <p class="score">Top label: <span class="label">{d["top_label"]}</span> ({d["top_score"]:.1%})</p>\n'
+            html += f'        <p class="score">Real score: {d["real_score"]:.1%} | Non-real: {d["non_real_score"]:.1%}</p>\n'
+        
+        # Try to embed thumbnail
+        html += f'        <img class="thumbnail" src="{file_url}" onerror="this.style.display=\'none\'" />\n'
+        html += f'    </div>\n'
+    
+    html += """
+</body>
+</html>
+"""
+    
+    output_path.write_text(html, encoding='utf-8')
+    return output_path
+
+
+def calibrate_classifier(image_paths: List[Path], num_samples: int = 30, output_report: Optional[Path] = None):
     """Test classifier on random samples to calibrate."""
     print(f"\n{'='*60}")
     print(f"CALIBRATION MODE: Testing on {num_samples} random images")
@@ -111,6 +202,14 @@ def calibrate_classifier(image_paths: List[Path], num_samples: int = 30):
     if len(real_photos) + len(non_real) < num_samples:
         errors = num_samples - len(real_photos) - len(non_real)
         print(f"\n⚠ {errors} images failed to process")
+    
+    # Generate HTML report
+    if output_report is None:
+        output_report = Path.cwd() / "calibration_report.html"
+    
+    report_path = generate_html_report(results, output_report)
+    print(f"\n📄 Full report saved to: {report_path}")
+    print(f"   Open this file in your browser to view all images with clickable links")
     
     print("\n" + "="*60)
     print("Review the results above. If accuracy looks good, proceed with full run.")
